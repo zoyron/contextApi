@@ -1,20 +1,24 @@
-import React, {useState} from "react";
-import  PackageContext from "./context";
+import React, { useState } from "react";
+import Context from "./context";
 
-const provider = props => {
+const Provider = (props) => {
   const [mission, setMission] = useState({
-    mName = "Go to Russia",
-    agent = 007,
-    accept = "Not accepted"
-  })
-  return(
-    <PackageContext.Provider value={{
-      data: mission,
-      isMissionAccepted: () => {
-        setMission({...mission, accept: "ACCEPTED"});
-      }
-    }}>
+    mName: "Go to Russia",
+    agent: "007",
+    accept: "Not accepted",
+  });
+  return (
+    <Context.Provider
+      value={{
+        data: mission,
+        isMissionAccepted: () => {
+          setMission({ ...mission, accept: "ACCEPTED" });
+        },
+      }}
+    >
       {props.children}
-    </PackageContext.Provider>
-  )
-}
+    </Context.Provider>
+  );
+};
+
+export default Provider;
